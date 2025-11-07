@@ -1,0 +1,3 @@
+spring:
+  application:
+    name: poc-s3-file-uploader
