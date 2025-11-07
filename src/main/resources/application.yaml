@@ -1,3 +1,10 @@
-spring:
-  application:
-    name: poc-s3-file-uploader
+server:
+  port: 8080
+
+aws:
+  access-key: AWS_ACCESS_KEY
+  secret-key: AWS_SECRET_KEY
+  region: us-east-1
+  s3:
+    bucket-name: bucket-name
+    endpoint: "" 
