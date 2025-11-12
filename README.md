@@ -105,3 +105,26 @@ mvn spring-boot:run
 Then open:
 👉 http://localhost:8080/files/upload
 
+## 🧪 Testing with Postman
+
+1. Open Postman
+
+2. Create a new POST request to http://localhost:8080/files/upload
+
+3. Under Body → form-data, add a key named file of type File
+
+4. Choose a local file and send the request
+
+5. You’ll receive a public S3 URL if successful
+
+## 🧱 Technologies Used
+
+- Java 17+
+
+- Spring Boot 3+
+
+- AWS SDK v2 (S3Client)
+
+- SLF4J / Logback
+
+- Gradle or Maven
