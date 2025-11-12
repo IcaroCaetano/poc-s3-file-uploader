@@ -133,4 +133,5 @@ Then open:
 
 Icaro Caetano de Figueiredo
 Developer & Cloud Enthusiast ☁️
-📎 GitHub Profile(https://github.com/IcaroCaetano)
+
+📎 [GitHub Profile](https://github.com/IcaroCaetano)
