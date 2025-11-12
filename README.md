@@ -128,3 +128,9 @@ Then open:
 - SLF4J / Logback
 
 - Gradle or Maven
+
+## 🧑‍💻 Author
+
+Icaro Caetano de Figueiredo
+Developer & Cloud Enthusiast ☁️
+📎 GitHub Profile(https://github.com/IcaroCaetano)
