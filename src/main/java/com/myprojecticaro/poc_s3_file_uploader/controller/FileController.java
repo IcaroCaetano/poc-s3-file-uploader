@@ -72,4 +72,19 @@ public class FileController {
             return ResponseEntity.internalServerError().body("Upload failed: " + e.getMessage());
         }
     }
+
+        /**
+     * Lists all files available in the S3 bucket.
+     *
+     * @return a list of filenames
+     */
+    @GetMapping
+    public ResponseEntity<List<String>> listFiles() {
+        logger.info("Listing all files in S3 bucket");
+        List<String> files = s3Service.listFiles();
+        return ResponseEntity.ok(files);
+    }
+
+
+    
 }
