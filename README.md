@@ -63,6 +63,8 @@ aws:
 
 ## 📡 API Endpoint
 
+### 1️⃣ Upload a File
+
 POST /files/upload
 
 Description: Uploads a file to S3.
@@ -84,6 +86,28 @@ Response:
 
 ````
 "https://your-s3-bucket.s3.us-east-1.amazonaws.com/1697056123456_file.png"
+````
+
+### 2️⃣ List Files
+
+GET /files
+
+Description: Returns a list of all objects in the S3 bucket.
+
+Example (using curl):
+
+````
+curl -X GET http://localhost:8080/files
+````
+Response:
+
+````
+[
+  "file1.png",
+  "file2.pdf",
+  "file3.jpg"
+]
+
 ````
 
 ## 🧰 Build & Run
