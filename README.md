@@ -126,6 +126,26 @@ Response:
 
 - Returns the binary content of the file as an attachmen
 
+### 4️⃣ Delete a File
+
+DELETE /files/{filename}
+
+Description: Deletes the specified file from S3.
+
+Example (using curl):
+
+````
+curl -X DELETE http://localhost:8080/files/file1.png
+````
+
+Response:
+
+````
+{
+  "message": "File deleted successfully: file1.png"
+}
+````
+
 ## 🧰 Build & Run
 
 Using Gradle (default)
