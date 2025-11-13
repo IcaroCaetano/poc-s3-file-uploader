@@ -116,6 +116,16 @@ public class S3Service {
         }
     }
 
+     /**
+     * Deletes a file from an S3 bucket.
+     *
+     * <p>This method sends a {@link DeleteObjectRequest} to AWS S3
+     * and removes the object specified by the filename (key).
+     *
+     * @param filename the name of the file (S3 object key) to delete
+     * @throws software.amazon.awssdk.core.exception.SdkException
+     *         if the AWS SDK encounters an error during the delete operation
+     */
     public void deleteFile(String filename) {
         DeleteObjectRequest deleteRequest = DeleteObjectRequest.builder()
                 .bucket(bucketName)
