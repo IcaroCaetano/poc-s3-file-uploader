@@ -77,4 +77,42 @@ public class S3Service {
 
         return String.format("https://%s.s3.%s.amazonaws.com/%s", bucketName, s3Client.region().id(), key);
     }
+
+    /**
+     * Lists all files in the S3 bucket.
+     *
+     * @return List of filenames
+     */
+    public List<String> listFiles() {
+        ListObjectsV2Request listReq = ListObjectsV2Request.builder()
+                .bucket(bucketName)
+                .build();
+
+        ListObjectsV2Response listRes = s3Client.listObjectsV2(listReq);
+
+        return listRes.contents().stream()
+                .map(S3Object::key)
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * Downloads a file from S3 by its filename.
+     *
+     * @param filename The key (file name) in the bucket
+     * @return File content as bytes
+     */
+    public byte[] downloadFile(String filename) {
+        GetObjectRequest getObjectRequest = GetObjectRequest.builder()
+                .bucket(bucketName)
+                .key(filename)
+                .build();
+
+        ResponseInputStream<GetObjectResponse> s3Object = s3Client.getObject(getObjectRequest);
+
+        try {
+            return s3Object.readAllBytes();
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to download file: " + filename, e);
+        }
+    }
 }
