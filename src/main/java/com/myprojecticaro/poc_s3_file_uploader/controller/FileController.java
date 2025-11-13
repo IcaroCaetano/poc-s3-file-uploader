@@ -73,7 +73,7 @@ public class FileController {
         }
     }
 
-        /**
+    /**
      * Lists all files available in the S3 bucket.
      *
      * @return a list of filenames
@@ -85,6 +85,24 @@ public class FileController {
         return ResponseEntity.ok(files);
     }
 
-
-    
+    /**
+     * Downloads a specific file from S3 by its name.
+     *
+     * @param filename the name of the file to download
+     * @return the file content as a byte array
+     */
+    @GetMapping("/{filename}")
+    public ResponseEntity<byte[]> downloadFile(@PathVariable String filename) {
+        logger.info("Downloading file from S3: {}", filename);
+        try {
+            byte[] fileBytes = s3Service.downloadFile(filename);
+            return ResponseEntity.ok()
+                    .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + filename + "\"")
+                    .contentType(MediaType.APPLICATION_OCTET_STREAM)
+                    .body(fileBytes);
+        } catch (Exception e) {
+            logger.error("Error downloading file: {}", filename, e);
+            return ResponseEntity.internalServerError().body(null);
+        }
+    }
 }
