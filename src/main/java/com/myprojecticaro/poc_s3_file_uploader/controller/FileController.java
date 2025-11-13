@@ -105,4 +105,10 @@ public class FileController {
             return ResponseEntity.internalServerError().body(null);
         }
     }
+
+    @DeleteMapping("/{filename}")
+    public ResponseEntity<String> deleteFile(@PathVariable String filename) {
+        s3Service.deleteFile(filename);
+        return ResponseEntity.ok("File deleted successfully: " + filename);
+    }
 }
