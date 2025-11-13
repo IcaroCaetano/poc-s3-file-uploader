@@ -106,6 +106,20 @@ public class FileController {
         }
     }
 
+    
+    /**
+     * Deletes a file from Amazon S3 based on the provided filename.
+     *
+     * <p>This endpoint maps to: <strong>DELETE /files/{filename}</strong></p>
+     *
+     * <p>Example request:</p>
+     * <pre>
+     * DELETE /files/photo.png
+     * </pre>
+     *
+     * @param filename the name of the file to delete in the S3 bucket
+     * @return a success message indicating that the file was removed
+     */
     @DeleteMapping("/{filename}")
     public ResponseEntity<String> deleteFile(@PathVariable String filename) {
         s3Service.deleteFile(filename);
