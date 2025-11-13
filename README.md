@@ -110,6 +110,22 @@ Response:
 
 ````
 
+### 3️⃣ Download a File
+
+GET /files/{filename}
+
+Description: Downloads the specified file from S3.
+
+Example (using curl):
+
+````
+curl -X GET http://localhost:8080/files/file1.png -o file1.png
+````
+
+Response:
+
+- Returns the binary content of the file as an attachmen
+
 ## 🧰 Build & Run
 
 Using Gradle (default)
