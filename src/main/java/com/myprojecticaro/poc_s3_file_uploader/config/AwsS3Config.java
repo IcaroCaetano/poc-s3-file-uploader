@@ -88,4 +88,11 @@ public class AwsS3Config {
 
         return builder.build();
     }
+
+    @Bean
+    public S3TransferManager transferManager(S3Client s3Client) {
+        return S3TransferManager.builder()
+                .s3Client(s3Client)
+                .build();
+    }
 }
