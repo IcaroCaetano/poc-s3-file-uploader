@@ -38,6 +38,14 @@ import java.io.IOException;
 public class S3Service {
 
     private final S3Client s3Client;
+    private final S3TransferManager transferManager;
+    private final String bucketName = "your-bucket-name";
+
+    public S3Service(S3Client s3Client, S3TransferManager transferManager) {
+        this.s3Client = s3Client;
+        this.transferManager = transferManager;
+    }
+
 
     @Value("${aws.s3.bucket-name}")
     private String bucketName;
@@ -133,5 +141,28 @@ public class S3Service {
                 .build();
 
         s3Client.deleteObject(deleteRequest);
+    }
+
+      /**
+     * Uploads a large file (5GB+) using S3 multipart upload via TransferManager.
+     *
+     * @param file the multipart file to upload
+     * @return the S3 URL of the uploaded file
+     * @throws IOException if the input stream cannot be read
+     */
+    public String uploadLargeFile(MultipartFile file) throws IOException {
+
+        String key = System.currentTimeMillis() + "_" + file.getOriginalFilename();
+
+        UploadFileRequest uploadRequest = UploadFileRequest.builder()
+                .putObjectRequest(p -> p.bucket(bucketName).key(key))
+                .source(file.getResource())
+                .build();
+
+        FileUpload upload = transferManager.uploadFile(uploadRequest);
+
+        upload.completionFuture().join(); // Wait for completion
+
+        return "https://" + bucketName + ".s3.amazonaws.com/" + key;
     }
 }
