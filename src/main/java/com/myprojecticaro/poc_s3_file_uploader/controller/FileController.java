@@ -125,4 +125,14 @@ public class FileController {
         s3Service.deleteFile(filename);
         return ResponseEntity.ok("File deleted successfully: " + filename);
     }
+
+    @PostMapping("/upload/large")
+    public ResponseEntity<String> uploadLargeFile(@RequestParam("file") MultipartFile file) {
+        try {
+            String url = s3Service.uploadLargeFile(file);
+            return ResponseEntity.ok(url);
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().body("Large upload failed: " + e.getMessage());
+        }
+    }
 }
