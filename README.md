@@ -146,6 +146,34 @@ Response:
 }
 ````
 
+### 5️⃣ Upload Large File (Multipart 5GB+)
+
+POST /files/upload/large
+
+Description:
+Uploads very large files (5GB or more) to S3 using AWS Multipart Upload.
+This method splits the file into multiple parts and uploads them in parallel for better performance and reliability.
+
+Request:
+
+Content-Type: multipart/form-data
+
+Parameter: file — the large file to upload
+
+Example (using curl):
+
+````
+
+curl -X POST http://localhost:8080/files/upload/large \
+  -F "file=@/path/to/large-file.iso"
+````
+
+Response:
+
+````
+"https://your-s3-bucket.s3.us-east-1.amazonaws.com/large-file.iso"
+````
+
 ## 🧰 Build & Run
 
 Using Gradle (default)
