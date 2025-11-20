@@ -126,6 +126,17 @@ public class FileController {
         return ResponseEntity.ok("File deleted successfully: " + filename);
     }
 
+    /**
+     * Handles the upload of large files (5GB+) to AWS S3 using multipart upload.
+     * <p>
+     * This endpoint uses S3 TransferManager to efficiently upload large files
+     * in parallel parts, allowing high performance and resilience during transfer.
+     * </p>
+     *
+     * @param file the multipart file to be uploaded. Must be large (recommended for files >5GB)
+     * @return {@link ResponseEntity} containing the public S3 URL of the uploaded file if successful,
+     *         or an error message with HTTP 500 status in case of failure.
+     */
     @PostMapping("/upload/large")
     public ResponseEntity<String> uploadLargeFile(@RequestParam("file") MultipartFile file) {
         try {
