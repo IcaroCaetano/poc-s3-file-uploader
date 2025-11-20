@@ -51,6 +51,26 @@ aws:
     endpoint: http://localhost:4566   # Optional (useful for LocalStack)
 ````
 
+🛡️ Antivirus Scan (Mocked)
+
+Before uploading a file, the API uses a mocked AntivirusService that simulates malware detection.
+
+Files are rejected if:
+
+The filename contains "virus"
+
+The file is an .exe
+
+The file is empty
+
+Example response:
+
+````
+{
+  "error": "Malicious file detected: virus-image.png"
+}
+````
+
 ## 🧠 How It Works
 
 1. The client sends a POST request with a multipart file.
