@@ -41,17 +41,15 @@ public class S3Service {
     private final S3TransferManager transferManager;
     private final AntivirusService antivirusService;
     private final String bucketName = "your-bucket-name";
+    
+    @Value("${aws.s3.bucket-name}")
+    private String bucketName;
 
     public S3Service(S3Client s3Client, S3TransferManager transferManager, AntivirusService antivirusService) {
         this.s3Client = s3Client;
         this.transferManager = transferManager;
         this.antivirusService = antivirusService;
     }
-
-
-    @Value("${aws.s3.bucket-name}")
-    private String bucketName;
-
 
     /**
      * Uploads a file to the configured AWS S3 bucket.
