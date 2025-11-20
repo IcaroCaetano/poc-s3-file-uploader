@@ -52,14 +52,6 @@ public class S3Service {
     @Value("${aws.s3.bucket-name}")
     private String bucketName;
 
-    /**
-     * Constructs an instance of {@code S3Service} with the provided {@link S3Client}.
-     *
-     * @param s3Client the AWS S3 client used to perform operations on S3
-     */
-    public S3Service(S3Client s3Client) {
-        this.s3Client = s3Client;
-    }
 
     /**
      * Uploads a file to the configured AWS S3 bucket.
@@ -74,19 +66,23 @@ public class S3Service {
      * @throws IOException if the file cannot be read or uploaded
      */
     public String uploadFile(MultipartFile file) throws IOException {
-        String key = System.currentTimeMillis() + "_" + file.getOriginalFilename();
 
-        s3Client.putObject(
-                PutObjectRequest.builder()
-                        .bucket(bucketName)
-                        .key(key)
-                        .contentType(file.getContentType())
-                        .build(),
-                software.amazon.awssdk.core.sync.RequestBody.fromBytes(file.getBytes())
-        );
+    antivirusService.scanFile(file);
 
-        return String.format("https://%s.s3.%s.amazonaws.com/%s", bucketName, s3Client.region().id(), key);
-    }
+    String key = System.currentTimeMillis() + "_" + file.getOriginalFilename();
+
+    s3Client.putObject(
+            PutObjectRequest.builder()
+                    .bucket(bucketName)
+                    .key(key)
+                    .contentType(file.getContentType())
+                    .build(),
+            software.amazon.awssdk.core.sync.RequestBody.fromBytes(file.getBytes())
+    );
+
+    return String.format("https://%s.s3.%s.amazonaws.com/%s",
+            bucketName, s3Client.region().id(), key);
+}
 
     /**
      * Lists all files in the S3 bucket.
