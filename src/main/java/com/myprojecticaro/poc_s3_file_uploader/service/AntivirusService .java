@@ -34,7 +34,5 @@ public class AntivirusService {
         if (file.isEmpty()) {
             throw new RuntimeException("Empty files are not allowed.");
         }
-
-        // Otherwise, simulate a clean file
     }
 }
