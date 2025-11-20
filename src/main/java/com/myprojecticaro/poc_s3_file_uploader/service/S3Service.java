@@ -39,11 +39,13 @@ public class S3Service {
 
     private final S3Client s3Client;
     private final S3TransferManager transferManager;
+    private final AntivirusService antivirusService;
     private final String bucketName = "your-bucket-name";
 
-    public S3Service(S3Client s3Client, S3TransferManager transferManager) {
+    public S3Service(S3Client s3Client, S3TransferManager transferManager, AntivirusService antivirusService) {
         this.s3Client = s3Client;
         this.transferManager = transferManager;
+        this.antivirusService = antivirusService;
     }
 
 
