@@ -51,7 +51,7 @@ aws:
     endpoint: http://localhost:4566   # Optional (useful for LocalStack)
 ````
 
-🛡️ Antivirus Scan (Mocked)
+## 🛡️ Antivirus Scan (Mocked)
 
 Before uploading a file, the API uses a mocked AntivirusService that simulates malware detection.
 
