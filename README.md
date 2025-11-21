@@ -201,13 +201,26 @@ POST /files/upload/zip
 Descrição:
 Recebe múltiplos arquivos, compacta tudo em um único arquivo .zip em memória e faz o upload do ZIP para o S3.
 
-Request
+- Request
 
-Content-Type: multipart/form-data
+- Content-Type: multipart/form-data
 
 Parâmetro:
 
 files — múltiplos arquivos
+
+````
+
+curl -X POST http://localhost:8080/files/upload/zip \
+  -F "files=@/path/to/file1.png" \
+  -F "files=@/path/to/file2.pdf" \
+  -F "files=@/path/to/file3.jpg"
+````
+Response
+
+````
+"https://your-bucket.s3.us-east-1.amazonaws.com/1697081000000_bundle.zip"
+````
 
 ## 🧰 Build & Run
 
