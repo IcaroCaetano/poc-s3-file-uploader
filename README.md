@@ -9,17 +9,17 @@ It provides a simple REST API endpoint that accepts file uploads and stores them
 
 ✅ Core Features
 
-Upload single files to AWS S3
+- Upload single files to AWS S3
 
-Upload large multipart files (5GB+)
+- Upload large multipart files (5GB+)
 
-Upload and compress multiple files into a ZIP
+- Upload and compress multiple files into a ZIP
 
-Download files from S3
+- Download files from S3
 
-List all files inside an S3 bucket
+- List all files inside an S3 bucket
 
-Delete files from S3
+- Delete files from S3
 
 Automatic generation of public file URLs
 
