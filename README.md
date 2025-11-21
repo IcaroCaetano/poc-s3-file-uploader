@@ -5,14 +5,25 @@ It provides a simple REST API endpoint that accepts file uploads and stores them
 
 ---
 
-## 🚀 Features
+##🚀 Features
 
-- Upload files to AWS S3
-- Automatic generation of file URLs
-- Configurable AWS credentials and region
-- Support for **custom endpoints** (e.g., LocalStack for local testing)
-- Clean architecture with service and controller layers
-- Simple and extensible for production use
+✅ Core Features
+
+Upload single files to AWS S3
+
+Upload large multipart files (5GB+)
+
+Upload and compress multiple files into a ZIP
+
+Download files from S3
+
+List all files inside an S3 bucket
+
+Delete files from S3
+
+Automatic generation of public file URLs
+
+Configurable AWS credentials, region, and bucket via application.yml
 
 ---
 
