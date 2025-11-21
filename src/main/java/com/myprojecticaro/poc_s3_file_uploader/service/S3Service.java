@@ -162,6 +162,26 @@ public class S3Service {
         return "https://" + bucketName + ".s3.amazonaws.com/" + key;
     }
 
+     /**
+     * Uploads a ZIP file to an AWS S3 bucket.
+     *
+     * <p>This method uploads a ZIP archive represented as a byte array to the configured S3 bucket.
+     * The uploaded file will have the content type set to <code>application/zip</code>.
+     * After the upload is completed, the method returns the public URL of the stored file.</p>
+     *
+     * @param zipBytes the byte array containing the ZIP file contents
+     * @param zipName the name (key) under which the ZIP file will be stored in the S3 bucket
+     *
+     * @return the public URL of the uploaded ZIP file in S3
+     *
+     * @throws S3Exception if the upload operation fails due to AWS S3 errors
+     * @throws IllegalArgumentException if {@code zipBytes} or {@code zipName} are null or empty
+     *
+     * <p><b>Example:</b></p>
+     * <pre>
+     * String url = s3Service.uploadZip(zipData, "documents_2024.zip");
+     * </pre>
+     */
     public String uploadZip(byte[] zipBytes, String zipName) {
         s3Client.putObject(
                 PutObjectRequest.builder()
