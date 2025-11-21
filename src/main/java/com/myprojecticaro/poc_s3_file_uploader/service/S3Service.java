@@ -161,4 +161,21 @@ public class S3Service {
 
         return "https://" + bucketName + ".s3.amazonaws.com/" + key;
     }
+
+    public String uploadZip(byte[] zipBytes, String zipName) {
+        s3Client.putObject(
+                PutObjectRequest.builder()
+                        .bucket(bucketName)
+                        .key(zipName)
+                        .contentType("application/zip")
+                        .build(),
+                software.amazon.awssdk.core.sync.RequestBody.fromBytes(zipBytes)
+        );
+    
+        return String.format("https://%s.s3.%s.amazonaws.com/%s",
+                bucketName,
+                s3Client.region().id(),
+                zipName
+        );
+    }
 }
