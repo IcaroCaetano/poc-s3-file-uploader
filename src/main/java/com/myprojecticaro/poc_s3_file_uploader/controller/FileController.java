@@ -40,14 +40,16 @@ public class FileController {
     private static final Logger logger = LoggerFactory.getLogger(FileController.class);
 
     private final S3Service s3Service;
+    private final ZipService zipService;
 
     /**
      * Construtor que injeta a dependência {@link S3Service}.
      *
      * @param s3Service serviço responsável por realizar operações no AWS S3.
      */
-    public FileController(S3Service s3Service) {
+      public FileController(S3Service s3Service, ZipService zipService) {
         this.s3Service = s3Service;
+        this.zipService = zipService;
     }
 
     /**
