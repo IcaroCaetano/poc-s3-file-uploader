@@ -5,7 +5,7 @@ It provides a simple REST API endpoint that accepts file uploads and stores them
 
 ---
 
-##🚀 Features
+## 🚀 Features
 
 ✅ Core Features
 
