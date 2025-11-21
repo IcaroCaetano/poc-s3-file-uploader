@@ -148,4 +148,31 @@ public class FileController {
             return ResponseEntity.internalServerError().body("Large upload failed: " + e.getMessage());
         }
     }
+
+    /**
+     * Compresses multiple uploaded files into a ZIP archive and uploads it to AWS S3.
+     *
+     * @param files array of files to be zipped and uploaded
+     * @return URL of the generated ZIP file stored in S3
+     */
+    @PostMapping("/upload/zip")
+    public ResponseEntity<String> uploadZip(@RequestParam("files") MultipartFile[] files) {
+        logger.info("Received ZIP upload request with {} files", files.length);
+
+        try {
+            byte[] zipBytes = zipService.zipFiles(files);
+
+            String zipName = System.currentTimeMillis() + "_bundle.zip";
+
+            String fileUrl = s3Service.uploadZip(zipBytes, zipName);
+
+            logger.info("ZIP uploaded successfully: {}", fileUrl);
+            return ResponseEntity.ok(fileUrl);
+
+        } catch (Exception e) {
+            logger.error("ZIP upload failed", e);
+            return ResponseEntity.internalServerError()
+                    .body("ZIP upload failed: " + e.getMessage());
+        }
+    }
 }
