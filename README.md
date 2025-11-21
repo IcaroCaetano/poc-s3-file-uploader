@@ -22,15 +22,17 @@ It provides a simple REST API endpoint that accepts file uploads and stores them
 ````
 poc-aws-s3-upload/
 ├── src/main/java/com/myprojecticaro/
-│ ├── controller/
-│ │ └── FileController.java # Handles REST API endpoints for uploads
-│ ├── service/
-│ │ └── S3Service.java # Contains logic for uploading to AWS S3
-│ ├── config/
-│ │ └── AwsS3Config.java # Configures and provides the S3Client bean
-│ └── PocS3FileUploaderApplication.java # Main Spring Boot application
+│   ├── controller/
+│   │   └── FileController.java            # Handles REST API endpoints for uploads, downloads, listing, delete, zip and antivirus scan
+│   ├── service/
+│   │   ├── S3Service.java                 # Contains logic for interacting with AWS S3 (upload, list, delete, download, multipart)
+│   │   ├── ZipService.java                # Handles compression of multiple files into a ZIP before upload
+│   │   └── AntivirusService.java          # Mock antivirus scanner to validate files before uploading
+│   ├── config/
+│   │   └── AwsS3Config.java               # Configures and provides the S3Client bean
+│   └── PocS3FileUploaderApplication.java  # Main Spring Boot application
 └── src/main/resources/
-└── application.yml # Contains AWS and application configuration
+    └── application.yml                    # Contains AWS and application configuration
 
 ````
 
