@@ -194,6 +194,21 @@ Response:
 "https://your-s3-bucket.s3.us-east-1.amazonaws.com/large-file.iso"
 ````
 
+### 6️⃣ Upload multiple files as a ZIP
+
+POST /files/upload/zip
+
+Descrição:
+Recebe múltiplos arquivos, compacta tudo em um único arquivo .zip em memória e faz o upload do ZIP para o S3.
+
+Request
+
+Content-Type: multipart/form-data
+
+Parâmetro:
+
+files — múltiplos arquivos
+
 ## 🧰 Build & Run
 
 Using Gradle (default)
